@@ -6,8 +6,6 @@
 
 extern "C" int sdl_main(int argc, char** argv);
 
-extern "C" void (* signal(int, void (*)(int)))(int) { return NULL; }
-
 class IBNIZInstance : public pp::Instance {
  private:
   pthread_t main_thread_;
@@ -31,7 +29,6 @@ class IBNIZInstance : public pp::Instance {
 
   virtual bool Init(uint32_t argc, const char* argn[], const char* argv[]) {
     SDL_NACL_SetInstance(pp_instance(), 512, 512);
-    //SDL_Init(SDL_INIT_NOPARACHUTE | SDL_INIT_VIDEO | SDL_INIT_AUDIO);
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
 
     pthread_create(&main_thread_, NULL, Start, NULL);
