@@ -242,7 +242,7 @@ void updatescreen()
 int getticks()
 {
   if(!ui.opt_nonrealtime)
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(__native_client__)
   /* please find a proper fix */
     return SDL_GetTicks()/3;
 #else
